@@ -7,6 +7,12 @@ class QueensColor:
     color_code: str
     tiles: List[Tuple[int, int]]
 
+    def does_color_have_tile(self, tile: Tuple[int, int]) -> bool:
+        for tile_of_color in self.tiles:
+            if tile == tile_of_color:
+                return True
+        return False
+
 
 @dataclass
 class QueensGame:
@@ -23,11 +29,26 @@ class QueensGame:
 
     @property
     def every_tile_has_color(self) -> bool:
-        pass
+        for tile in self.grid:
+            if not any(color.does_color_have_tile(tile) for color in self.colors):
+                return False
+        return True
 
     @property
     def colors_all_fit_on_board(self) -> bool:
         pass
+
+    @property
+    def grid(self) -> List[Tuple[int, int]]:
+        return get_grid(self.size)
+
+
+def get_grid(size: int) -> List[Tuple[int, int]]:
+    grid = []
+    for x in range(size):
+        for y in range(size):
+            grid.append((x, y))
+    return grid
 
 
 def do_tiles_overlap(
@@ -35,6 +56,6 @@ def do_tiles_overlap(
 ) -> bool:
     for tile_a in tiles_a:
         for tile_b in tiles_b:
-            if tile_a[0] == tile_b[0] and tile_a[1] == tile_b[1]:
+            if tile_a == tile_b:
                 return True
     return False
