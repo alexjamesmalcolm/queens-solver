@@ -36,7 +36,16 @@ class QueensGame:
 
     @property
     def colors_all_fit_on_board(self) -> bool:
-        pass
+        for color in self.colors:
+            for tile_of_color in color.tiles:
+                if (
+                    tile_of_color[0] >= self.size
+                    or tile_of_color[0] < 0
+                    or tile_of_color[1] >= self.size
+                    or tile_of_color[1] < 0
+                ):
+                    return False
+        return True
 
     @property
     def grid(self) -> List[Tuple[int, int]]:
