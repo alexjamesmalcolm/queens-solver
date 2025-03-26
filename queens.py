@@ -23,7 +23,9 @@ class QueensGame:
     def has_no_overlap(self) -> bool:
         for color_a in self.colors:
             for color_b in self.colors:
-                if do_tiles_overlap(color_a.tiles, color_b.tiles):
+                if color_a != color_b and do_tiles_overlap(
+                    color_a.tiles, color_b.tiles
+                ):
                     return False
         return True
 
