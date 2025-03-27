@@ -3,7 +3,9 @@ from pulp import LpProblem, LpVariable, LpBinary, lpSum
 from queens import QueensGame
 
 
-def solve_game(game: QueensGame, queens_per_row=1, queens_per_col=1):
+def solve_game(
+    game: QueensGame, queens_per_row=1, queens_per_col=1, queens_per_color=1
+):
     p = LpProblem("Solve Queens Game")
 
     board = LpVariable.dicts("board", game.grid, cat=LpBinary)
@@ -23,6 +25,11 @@ def solve_game(game: QueensGame, queens_per_row=1, queens_per_col=1):
         )
 
     # Each color must have exactly 1 queen
+    for color in game.colors:
+        p += (
+            lpSum(board[tile] for tile in color.tiles) == queens_per_color,
+            f"color_{color.color_code}_must_have_{queens_per_color}_queen",
+        )
 
     # Queens cannot be adjacent (including diagonal) of each other
     print(p)
