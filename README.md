@@ -41,3 +41,5 @@ This seems pretty difficult, but if it worked it would be the fastest way to loa
 ### Detect if more than one solution
 
 I'm very sure that [this](https://www.queens-game.com/?map=map87) game of queens has more than 1 solution. I would like to be able to test a game of Queens to detect if more than one solution is possible. It could also be cool to then generate Queens games with only a single solution.
+
+After thinking about it for a bit the way that I could detect if there are multiple solutions is to assign ascending values for every tile on the board. It might be best to use the fibonacci sequence... just anything that allows for the gaps between tiles to be significantly different. Then run the solver twice, the first time trying to maximize the sum of the values of the tiles that queens occupy, the second time trying to minimize the same sum. If there are at least 2 solutions that should sufficiently incentivize the solver to find them.
