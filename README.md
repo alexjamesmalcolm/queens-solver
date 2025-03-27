@@ -1,6 +1,6 @@
 # Queens Solver
 
-This is a solver for the LinkedIn game [Queens](https://www.linkedin.com/games/queens/). My goal is to use this as an example of a "no goal" PuLP program.
+This is a solver for the LinkedIn game [Queens](https://www.linkedin.com/games/queens/). My goal is to use this as an example of a "no goal" PuLP program. That is, a PuLP program that is not trying to minimize or maximize any number but to simply come up with a valid solution.
 
 ## Adjacency Constraints
 
