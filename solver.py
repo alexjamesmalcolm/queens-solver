@@ -13,14 +13,14 @@ def solve_game(
     # Each row must have exactly 1 queen
     for row in range(game.size):
         p += (
-            lpSum(board[col, row] for col in range(game.size)) == 1,
+            lpSum(board[col, row] for col in range(game.size)) == queens_per_row,
             f"row_{row}_must_have_{queens_per_row}_queen",
         )
 
     # Each column must have exactly 1 queen
     for col in range(game.size):
         p += (
-            lpSum(board[col, row] for row in range(game.size)) == 1,
+            lpSum(board[col, row] for row in range(game.size)) == queens_per_col,
             f"col_{col}_must_have_{queens_per_col}_queen",
         )
 
