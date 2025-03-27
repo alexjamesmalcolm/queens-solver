@@ -21,3 +21,5 @@ With a 4x4 grid there are:
 - 12 Vertical constraints
 - 12 Horizontal constraints
 - 18 Diagonal constraints
+
+The diagonal constraints appear to follow [this pattern](https://oeis.org/A001105).
