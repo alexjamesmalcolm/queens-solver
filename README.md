@@ -23,3 +23,21 @@ With a 4x4 grid there are:
 - 18 Diagonal constraints
 
 The diagonal constraints appear to follow [this pattern](https://oeis.org/A001105).
+
+## Next Steps
+
+### Visual Output
+
+I need some way of displaying a Queens game as an image. Whatever I use for rendering, it would be nice to also be able to display the location of the Queens themselves after the game is solved.
+
+### Board Editor
+
+Some way of clicking and dragging on tiles to increase the boundary of a color. That seems like the fastest way.
+
+### Image into board
+
+This seems pretty difficult, but if it worked it would be the fastest way to load a Queens game into the solver.
+
+### Detect if more than one solution
+
+I'm very sure that [this](https://www.queens-game.com/?map=map87) game of queens has more than 1 solution. I would like to be able to test a game of Queens to detect if more than one solution is possible. It could also be cool to then generate Queens games with only a single solution.
