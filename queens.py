@@ -86,7 +86,13 @@ def get_horizontal_adjacency_pairs(n: int) -> List[Tuple[QueensTile]]:
 
 
 def get_vertical_adjacency_pairs(n: int) -> List[Tuple[QueensTile]]:
-    return []
+    grid = get_grid(n)
+    pairs: List[Tuple[QueensTile]] = []
+    for tile in grid:
+        lower_tile = QueensTile(tile.col, tile.row + 1)
+        if lower_tile in grid:
+            pairs.append((tile, lower_tile))
+    return pairs
 
 
 def get_diagonal_adjacency_pairs(n: int) -> List[Tuple[QueensTile]]:

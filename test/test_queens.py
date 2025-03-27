@@ -1,6 +1,11 @@
 from unittest import TestCase
 
-from queens import QueensGame, QueensColor, get_horizontal_adjacency_pairs
+from queens import (
+    QueensGame,
+    QueensColor,
+    get_horizontal_adjacency_pairs,
+    get_vertical_adjacency_pairs,
+)
 
 
 class TestQueens(TestCase):
@@ -72,3 +77,15 @@ class TestHorizontalAdjacency(TestCase):
         n = 2
         results = get_horizontal_adjacency_pairs(n)
         self.assertEqual(results, [((0, 0), (1, 0)), ((0, 1), (1, 1))])
+
+
+class TestVerticalAdjacency(TestCase):
+    def test_result_of_size_1(self):
+        n = 1
+        results = get_vertical_adjacency_pairs(n)
+        self.assertEqual(results, [])
+
+    def test_result_of_size_2(self):
+        n = 2
+        results = get_vertical_adjacency_pairs(n)
+        self.assertEqual(results, [((0, 0), (0, 1)), ((1, 0), (1, 1))])
