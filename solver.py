@@ -1,7 +1,13 @@
 from typing import List
 from pulp import LpProblem, LpVariable, LpBinary, lpSum
 
-from queens import QueensGame, QueensTile
+from queens import (
+    QueensGame,
+    QueensTile,
+    get_horizontal_adjacency_pairs,
+    get_vertical_adjacency_pairs,
+    get_diagonal_adjacency_pairs,
+)
 
 
 def solve_game(
@@ -34,9 +40,16 @@ def solve_game(
 
     # Queens cannot be adjacent (including diagonal) of each other
     # Horizontal adjacency
+    for left, right in get_horizontal_adjacency_pairs(game.size):
+        p += board[left] + board[right] <= 1
 
     # Vertical adjacency
+    for top, bottom in get_vertical_adjacency_pairs(game.size):
+        p += board[top] + board[bottom] <= 1
+
     # Diagonal adjacency
+    for a, b in get_diagonal_adjacency_pairs(game.size):
+        p += board[a] + board[b] <= 1
 
     # Solve
     p.solve()
