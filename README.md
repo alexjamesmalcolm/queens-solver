@@ -22,6 +22,24 @@ With a 4x4 grid there are:
 - 12 Horizontal constraints
 - 18 Diagonal constraints
 
+With a 5x5 grid there are:
+
+- 20 Vertical constraints
+- 20 Horizontal constraints
+- 32 Diagonal constraints
+
+With a 6x6 grid there are:
+
+- 30 Vertical constraints
+- 30 Horizontal constraints
+- 50 Diagonal constraints
+
+With a 7x7 grid there are:
+
+- 42 Vertical constraints
+- 42 Horizontal constraints
+- 72 Diagonal constraints
+
 The diagonal constraints appear to follow [this pattern](https://oeis.org/A001105).
 
 ## Next Steps
