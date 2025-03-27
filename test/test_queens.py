@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from queens import QueensGame, QueensColor
+from queens import QueensGame, QueensColor, get_horizontal_adjacency_pairs
 
 
 class TestQueens(TestCase):
@@ -60,3 +60,15 @@ class TestQueens(TestCase):
             game.colors_all_fit_on_board,
             "Second color has tile (2, 3) but the board is only 3x3",
         )
+
+
+class TestHorizontalAdjacency(TestCase):
+    def test_result_of_size_1(self):
+        n = 1
+        results = get_horizontal_adjacency_pairs(n)
+        self.assertEqual(results, [])
+
+    def test_result_of_size_2(self):
+        n = 2
+        results = get_horizontal_adjacency_pairs(n)
+        self.assertEqual(results, [((0, 0), (1, 0)), ((0, 1), (1, 1))])

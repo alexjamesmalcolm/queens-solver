@@ -1,12 +1,12 @@
-from typing import List, Tuple
+from typing import List
 from pulp import LpProblem, LpVariable, LpBinary, lpSum
 
-from queens import QueensGame
+from queens import QueensGame, QueensTile
 
 
 def solve_game(
     game: QueensGame, queens_per_row=1, queens_per_col=1, queens_per_color=1
-) -> List[Tuple[int, int]]:
+) -> List[QueensTile]:
     p = LpProblem("Solve Queens Game")
 
     board = LpVariable.dicts("board", game.grid, cat=LpBinary)
@@ -33,6 +33,10 @@ def solve_game(
         )
 
     # Queens cannot be adjacent (including diagonal) of each other
+    # Horizontal adjacency
+
+    # Vertical adjacency
+    # Diagonal adjacency
 
     # Solve
     p.solve()
@@ -42,3 +46,6 @@ def solve_game(
         if variable.varValue == 1:
             found_queens.append(tile)
     return found_queens
+
+
+# adjacency

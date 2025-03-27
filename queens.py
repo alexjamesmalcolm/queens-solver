@@ -1,13 +1,18 @@
-from typing import List, Tuple
+from typing import List, Tuple, NamedTuple
 from dataclasses import dataclass
+
+
+class QueensTile(NamedTuple):
+    col: int
+    row: int
 
 
 @dataclass
 class QueensColor:
     color_code: str
-    tiles: List[Tuple[int, int]]
+    tiles: List[QueensTile]
 
-    def does_color_have_tile(self, tile: Tuple[int, int]) -> bool:
+    def does_color_have_tile(self, tile: QueensTile) -> bool:
         for tile_of_color in self.tiles:
             if tile == tile_of_color:
                 return True
@@ -50,23 +55,39 @@ class QueensGame:
         return True
 
     @property
-    def grid(self) -> List[Tuple[int, int]]:
+    def grid(self) -> List[QueensTile]:
         return get_grid(self.size)
 
 
-def get_grid(size: int) -> List[Tuple[int, int]]:
+def get_grid(size: int) -> List[QueensTile]:
     grid = []
     for x in range(size):
         for y in range(size):
-            grid.append((x, y))
+            grid.append(QueensTile(x, y))
     return grid
 
 
-def do_tiles_overlap(
-    tiles_a: List[Tuple[int, int]], tiles_b: List[Tuple[int, int]]
-) -> bool:
+def do_tiles_overlap(tiles_a: List[QueensTile], tiles_b: List[QueensTile]) -> bool:
     for tile_a in tiles_a:
         for tile_b in tiles_b:
             if tile_a == tile_b:
                 return True
     return False
+
+
+def get_horizontal_adjacency_pairs(n: int) -> List[Tuple[QueensTile]]:
+    grid = get_grid(n)
+    pairs: List[Tuple[QueensTile]] = []
+    for tile in grid:
+        right_tile = QueensTile(tile.col + 1, tile.row)
+        if right_tile in grid:
+            pairs.append((tile, right_tile))
+    return pairs
+
+
+def get_vertical_adjacency_pairs(n: int) -> List[Tuple[QueensTile]]:
+    return []
+
+
+def get_diagonal_adjacency_pairs(n: int) -> List[Tuple[QueensTile]]:
+    return []
