@@ -5,6 +5,7 @@ from queens import (
     QueensColor,
     get_horizontal_adjacency_pairs,
     get_vertical_adjacency_pairs,
+    get_diagonal_adjacency_pairs,
 )
 
 
@@ -89,3 +90,15 @@ class TestVerticalAdjacency(TestCase):
         n = 2
         results = get_vertical_adjacency_pairs(n)
         self.assertEqual(results, [((0, 0), (0, 1)), ((1, 0), (1, 1))])
+
+
+class TestDiagonalAdjacency(TestCase):
+    def test_result_of_size_1(self):
+        n = 1
+        results = get_diagonal_adjacency_pairs(n)
+        self.assertEqual(results, [])
+
+    def test_result_of_size_2(self):
+        n = 2
+        results = get_diagonal_adjacency_pairs(n)
+        self.assertEqual(results, [((0, 0), (1, 1)), ((1, 0), (0, 1))])
